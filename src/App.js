@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Game from './components/tictactoe/game';
 
 class App extends Component {
   render() {
+    console.log(React.version);
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+        {/* <header className="App-header"> */}
+          {/* <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
@@ -18,8 +19,9 @@ class App extends Component {
             rel="noopener noreferrer"
           >
             Learn React
-          </a>
-        </header>
+          </a> */}
+        {/* </header> */}
+        <Game/>
       </div>
     );
   }
