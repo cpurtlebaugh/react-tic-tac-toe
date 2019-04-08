@@ -1,17 +1,21 @@
 import React from 'react';
 
 const Square = (props) => {
+    const squareStyle = {
+        width: '6em',
+        height: '6em',
+        border : '1px solid #e4e4e4',
+        listStyle: 'none',
+        fontSize: '24px',
+    };
     return (
-        <div onClick={()=> {
+        <div style={squareStyle} onClick={()=> {
             if(props.val === null){
                 console.log(`Firing ${props.row}, ${props.index}, ${props.currentPlayer}, ${props.val}`)
                 props.setSquare(props.row, props.square)}
             }
         }>
-            <li>current player: {props.currentPlayer}</li>
-            <li>row: {props.row}</li>
-            <li>square: {props.square}</li>
-            <li>val: {props.val}</li>
+         <a>{props.val}</a>
         </div>
     );
 }
