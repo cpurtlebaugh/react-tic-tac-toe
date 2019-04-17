@@ -1,18 +1,16 @@
 import React from 'react';
 import Square from './square';
 const Board = (props) => {
-    console.log("PROPS IN BOARD", props)
     const container = {
         justifyContent: 'center',
         display: 'flex'
     };
-    
     const flexGridThirds = {
         justifyContent: 'space between'
-    }
+    };
     const col = {
         width: '33%'
-    }
+    };
 
     return (
         <div>

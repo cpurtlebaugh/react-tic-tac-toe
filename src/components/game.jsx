@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import Board from './board';
+const button = {
+    border: 'none',
+    color: 'white',
+    backgroundColor: 'blue',
+    padding: '.5rem 1rem',
+    margin: '1rem'
+};
 
 class Game extends Component {
     constructor(props) {
@@ -16,7 +23,7 @@ class Game extends Component {
         this.updateBoard = this.updateBoard.bind(this); 
         this.checkBoard = this.checkBoard.bind(this);
         this.changePlayer = this.changePlayer.bind(this);
-    }
+    };
 
     componentDidMount() {
         this.setState({currentPlayer: this.state.players[0]});
@@ -31,7 +38,7 @@ class Game extends Component {
             });
             this.checkBoard();
         }
-    }
+    };
 
     changePlayer(){
         console.log("change player this player: ", this.players)
@@ -43,7 +50,7 @@ class Game extends Component {
         this.setState({
             currentPlayer
         });
-    }
+    };
 
     checkBoard(){
         let board = this.state.board;
@@ -57,7 +64,7 @@ class Game extends Component {
             [board[0][2], board[1][2], board[2][2]], // vertical 3
             [board[0][0], board[1][1], board[2][2]], // crossbar 1
             [board[0][2], board[1][1], board[2][0]] // crossbar 2
-        ]
+        ];
 
         // for loop to break
         moves.forEach((el) => {
@@ -70,17 +77,19 @@ class Game extends Component {
             } else {
                 this.changePlayer()
             }
-        })
-    }
+        });
+    };
   
     render() {
-        console.log("game ended? ", this.state.gameEnded)
         return (
-            <Board board={this.state.board} 
-                currentPlayer={this.state.currentPlayer} 
-                updateBoard={this.updateBoard}/>
+            <div>
+                <Board board={this.state.board} 
+                    currentPlayer={this.state.currentPlayer} 
+                    updateBoard={this.updateBoard}/>
+                {this.state.gameEnded ? <button style={button}>Reset</button>: null}
+            </div>
         );
-    }
+    };
 }
 
 export default Game;
