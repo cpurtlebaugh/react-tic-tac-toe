@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Board from './board';
+
 const button = {
     border: 'none',
     color: 'white',
@@ -17,16 +18,26 @@ class Game extends Component {
                     [null,null,null], 
                     [null,null,null]],
             currentPlayer: null,
-            gameEnded: false,
-            winner: undefined
+            moves: 0,
+            gameEnded: false
         };
         this.updateBoard = this.updateBoard.bind(this); 
         this.checkBoard = this.checkBoard.bind(this);
         this.changePlayer = this.changePlayer.bind(this);
+        this.resetGame = this.resetGame.bind(this);
     };
 
     componentDidMount() {
         this.setState({currentPlayer: this.state.players[0]});
+    };
+
+    resetGame(){
+        return this.setState({
+            board: [[null,null,null], 
+            [null,null,null], 
+            [null,null,null]],
+            gameEnded: false
+        });
     };
 
     updateBoard(row, square, val){
@@ -41,14 +52,14 @@ class Game extends Component {
     };
 
     changePlayer(){
-        console.log("change player this player: ", this.players)
-        let currentPlayer;
+        let currentPlayer, moves;
+        moves = this.state.moves + 1
         this.state.currentPlayer === this.state.players[0] ? 
             currentPlayer = this.state.players[1] 
             : currentPlayer = this.state.players[0];
-
         this.setState({
-            currentPlayer
+            currentPlayer,
+            moves
         });
     };
 
@@ -66,14 +77,12 @@ class Game extends Component {
             [board[0][2], board[1][1], board[2][0]] // crossbar 2
         ];
 
-        // for loop to break
         moves.forEach((el) => {
             if(el[0] === cp && el[1] === cp && el[2] === cp){
                 this.setState({
                     gameEnded: true,
                     winner: cp
                 })
-                // reset game or create a reset game button
             } else {
                 this.changePlayer()
             }
@@ -83,10 +92,15 @@ class Game extends Component {
     render() {
         return (
             <div>
-                <Board board={this.state.board} 
-                    currentPlayer={this.state.currentPlayer} 
+                <Board board={this.state.board}
+                    moves={this.state.moves}
+                    currentPlayer={this.state.currentPlayer}
+                    winner={this.state.winner}
+                    gameEnded={this.state.gameEnded} 
                     updateBoard={this.updateBoard}/>
-                {this.state.gameEnded ? <button style={button}>Reset</button>: null}
+                {this.state.gameEnded || this.state.moves === 9
+                    ? <button style={button} onClick={this.resetGame}>Reset</button>
+                    : null}
             </div>
         );
     };
