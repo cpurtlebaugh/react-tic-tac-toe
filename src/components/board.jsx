@@ -14,7 +14,7 @@ const Board = (props) => {
     const col = {
         width: '33%'
     };
-    console.log("props moves: ", props.moves)
+
     return (
         <div>
             {props.gameEnded && props.moves !== 9
