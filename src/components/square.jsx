@@ -12,7 +12,6 @@ const Square = (props) => {
     return (
         <div style={squareStyle} onClick={()=> {
             if(props.val === null){
-                console.log(`Firing ${props.row}, ${props.index}, ${props.currentPlayer}, ${props.val}`)
                 props.setSquare(props.row, props.square)}
             }}>
         {props.val}

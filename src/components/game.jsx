@@ -32,11 +32,12 @@ class Game extends Component {
     };
 
     resetGame(){
-        return this.setState({
+        this.setState({
             board: [[null,null,null], 
             [null,null,null], 
             [null,null,null]],
-            gameEnded: false
+            gameEnded: false,
+            moves: 0
         });
     };
 
